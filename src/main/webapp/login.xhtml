@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head> 
+        <title>Àrea de Acesso</title>
+        <meta name="viewport" content="width=device-width"/>
+        <h:outputStylesheet library="css" name="bootstrap.css" />
+        <h:outputStylesheet library="css" name="bootstrap.min.css" />
+    </h:head>
+    <h:body id="bd">
+        <p:dialog header="Área de Acesso" visible="true" closable="false" draggable="false" 
+                  resizable="false" width="300" position="right" style="margin-right: 23%">
+            <h:panelGroup rendered="#{!empty param.error}"> 
+                <h:outputLabel value="Motivo: #{SPRING_SECURITY_LAST_EXCEPTION.message}" style="color: red" />
+            </h:panelGroup>
+            <h:panelGroup>  
+                <form action="${request.contextPath}/j_spring_security_check" 
+                      method="post" class="navbar-form pull-right" style="margin-right: 10px;">
+                    <h:panelGrid columns="2" cellpadding="5" cellspacing="5"> 
+                        <input type="text" name="j_username" 
+                               required="true" placeholder="Login" 
+                               class="form-control" style="width: 230px" />
+                        
+                        <input type="password" name="j_password" required="true" placeholder="Senha" 
+                               class="form-control" style="width: 230px;margin-top: 1px;" /> 
+                        
+                        <input id="btn" type="submit" value="Logar" 
+                               class="btn btn-group" style="margin-top: 1px;"/>
+                    </h:panelGrid>
+                </form>
+            </h:panelGroup>
+        </p:dialog>
+    </h:body>
+</html>

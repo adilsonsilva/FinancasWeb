@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/template/layoutDefault.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+      <ui:define name="titulo">Lançamento</ui:define>
+
+      <ui:define name="conteudo">
+            <h1>Lançamento</h1>
+            <h:form style="padding-left: 24px;">
+                  <p:messages rendered="#{lancamentoMB.mensagem}" showDetail="true" closable="true" globalOnly="true" />
+                  <h:panelGrid id="panel" columns="2" class="form-grid" cellspacing="5">
+                        
+                        <h:outputLabel value="Tipo de Lançamento:" for="tipoLancamento"/>
+                        <p:selectOneMenu id="tipoLancamento" value="#{lancamentoMB.tipo}">
+                              <f:selectItems var="tipo" value="#{lancamentoMB.tipoLancamento}" itemLabel="#{tipo.descricao}" itemValue="#{tipo}" />
+                        </p:selectOneMenu>
+                        
+                        <h:outputLabel value="Categoria:" for="categoria"/>
+                        <p:selectOneMenu id="categoria" value="#{lancamentoMB.categoria.idCategoria}"
+                                         required="true" requiredMessage="Campo Categoria obrigatório.">
+                              <f:selectItems var="categoria" value="#{lancamentoMB.categorias}" itemLabel="#{categoria.nome}" 
+                                             itemValue="#{categoria.idCategoria}" itemDescription="#{categoria.descricao}" />
+                        </p:selectOneMenu>
+                        
+                        <h:outputLabel value="Valor: " for="valor" />
+                        <p:inputText id="valor" size="10" label="Valor" value="#{lancamentoMB.lancamento.valor}"
+                                     required="true" requiredMessage="Campo Valor obrigatório.">
+                              <f:convertNumber locale="pt_BR" maxFractionDigits="2" minFractionDigits="2" />
+                              <f:validateDoubleRange minimum="0" />
+                              <f:ajax event="blur" render="@this" />
+                        </p:inputText>
+                        
+                        <h:outputLabel value="Descrição: " for="descricao"/>
+                        <p:inputTextarea id="descricao" rows="2" cols="40" 
+                                         value="#{lancamentoMB.lancamento.descricao}" required="true"
+                                         requiredMessage="Campo Descrição obrigatório." />
+                        <h:outputLabel />
+                        
+                        <h:panelGroup>
+                              <p:commandButton value="Salvar" ajax="false" action="#{lancamentoMB.salvar}" 
+                                               process="@this" update="@form"  icon="ui-icon-circle-plus"/>
+                              
+                              <p:commandButton value="Limpar" immediate="true" 
+                                               type="reset"  icon="ui-icon-refresh" />
+                              
+                              <p:commandButton value="Cancelar" ajax="false" 
+                                               action="#{lancamentoMB.cancelar}"  icon="ui-icon-circle-close"/>
+                        </h:panelGroup>
+                  </h:panelGrid>
+            </h:form>
+      </ui:define>
+</ui:composition>

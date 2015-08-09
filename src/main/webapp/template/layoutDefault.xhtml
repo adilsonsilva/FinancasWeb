@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      <h:head>
+            <title><ui:insert name="titulo"></ui:insert></title>
+            <h:outputStylesheet name="estilo.css" library="css" />
+      </h:head>
+
+      <h:body>
+            <div id="header">
+                  <ui:insert name="cabecalho">
+                        <ui:include src="cabecalho.xhtml"/>
+                  </ui:insert>
+            </div>
+
+            <div id="content">
+                  <ui:insert name="conteudo">
+
+                  </ui:insert>
+            </div>    
+            <div id="footer">
+                  <ui:insert name="footer">
+                        <ui:include src="rodape.xhtml" />
+                  </ui:insert>
+            </div>    
+      </h:body>
+</html>
+

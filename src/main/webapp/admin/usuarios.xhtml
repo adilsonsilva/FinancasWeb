@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/template/layoutDefault.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+      <ui:define name="titulo">Aréa Administrativa</ui:define>
+
+      <ui:define name="conteudo">
+            <h1>Usuários</h1>
+            <h:form style="padding-left: 24px;">
+                  <h:panelGrid id="panel">
+                        <p:dataTable style="font-size: 12px;">
+                              <p:column headerText="Código">
+
+                              </p:column>
+                              <p:column headerText="Nome">
+
+                              </p:column>
+                              <p:column headerText="e-Mail">
+
+                              </p:column>
+                              <p:column headerText="Status">
+
+                              </p:column>              
+
+                              <p:column headerText="Ação">
+                                    <p:commandButton icon="ui-icon-delete" title="Excluir" />
+                                    <p:commandButton icon="ui-icon-edit" title="Editar" />
+                                    <p:commandButton icon="ui-icon-search" title="Visualizar" />
+                              </p:column>
+                        </p:dataTable>
+                  </h:panelGrid>
+            </h:form>
+
+      </ui:define>
+</ui:composition>

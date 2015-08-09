@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+      <h:head>
+            <title>FinançasWeb</title>
+            <meta name="viewport" content="width=device-width"/>
+      </h:head>
+      <h:body>
+            <div id="header">
+                  <h:form>  
+                        <p:toolbar>
+                              <p:toolbarGroup align="left">
+                                    <h:outputLabel value="FinaçasWeb" class="marca" />
+
+                                    <p:separator />   
+                                    
+                                    <p:commandButton type="button" value="Inicio" icon="ui-icon-home" action="inicio"/>
+
+                                    <p:menuButton value="Cadastros">  
+                                          <p:menuitem value="Lançamento" ajax="false" icon="ui-icon-newwin" action="lancamento" />  
+                                          <p:menuitem value="Categoria" ajax="false" icon="ui-icon-ewwin" action="categoria" /> 
+                                    </p:menuButton> 
+                                    
+                                    <p:menuButton value="Relatórios" style="margin-left: 2px;">  
+                                    </p:menuButton> 
+                                    
+                              </p:toolbarGroup>
+
+                              <p:toolbarGroup align="right">
+                                    <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />
+                              </p:toolbarGroup>
+                        </p:toolbar> 
+                  </h:form>
+            </div>
+      </h:body>
+</html>

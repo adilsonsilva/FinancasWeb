@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/template/layoutDefault.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+      <ui:define name="titulo">Categorias</ui:define>
+
+      <ui:define name="conteudo">
+            <h1>Gerenciamento de Categorias</h1>
+            <h:form id="frmCad" style="padding-left: 24px;">
+                  <p:messages rendered="#{categoriaMB.mensagem}" showDetail="true" closable="true" globalOnly="true" />
+                  <h:panelGrid id="panelCad" class="form-grid" columns="2" cellspacing="5">
+                        <h:outputLabel value="Categoria: " for="categoria" />
+                        <p:inputText id="categoria" label="Categoria" size="20" value="#{categoriaMB.categoria.nome}"/>
+                        <h:outputLabel value="Descrição: " for="descricao" />
+                        <p:inputTextarea rows="2" cols="40" label="Descrição" value="#{categoriaMB.categoria.descricao}"/>
+                        <h:outputLabel />
+                        <h:panelGroup>
+                              <p:commandButton value="Salvar" action="#{categoriaMB.salvar}" update="frmTb frmCad" icon="ui-icon-circle-plus"  />
+                              <p:commandButton value="Limpar" type="reset" immediate="true" icon="ui-icon-refresh"/>
+                              <p:commandButton value="Cancelar" action="#{categoriaMB.cancelar}" immediate="true" ajax="false" icon="ui-icon-circle-close" />
+                        </h:panelGroup>
+                  </h:panelGrid>                  
+            </h:form>
+            <h:form id="frmTb" style="padding-left: 24px;">
+                  <h:panelGrid id="panel" style="margin-top: 10px;">
+                        <p:dataTable id="tbCategoria" widgetVar="tbCategoria" style="font-size: 12px;" 
+                                     value="#{categoriaMB.categorias}" var="categoria">
+                              <p:column headerText="Código" width="10">
+                                    <center>
+                                          #{categoria.idCategoria}
+                                    </center>
+                              </p:column>
+                              <p:column headerText="Nome" width="100">
+                                    #{categoria.nome}
+                              </p:column>
+                              <p:column headerText="Status" width="20">
+                                    <center>
+                                          #{categoria.ativo == true ? "Ativo" : "Desativado"} 
+                                    </center>
+                              </p:column>
+                              <p:column headerText="Ação" width="10">
+                                    <center>
+                                          <p:commandButton icon="ui-icon-circle-#{categoria.ativo == true ? 'close' : 'check'}" update="frmTb"
+                                                           title="#{categoria.ativo == true ? 'Desativar' : 'Ativar'}" action="#{categoriaMB.ativar}">
+                                                <f:setPropertyActionListener target="#{categoriaMB.categoria}" value="#{categoria}" />
+                                          </p:commandButton>
+                                          <p:commandButton icon="ui-icon-pencil" title="Editar" update="frmCad">
+                                                <f:setPropertyActionListener target="#{categoriaMB.categoria}" value="#{categoria}" />
+                                          </p:commandButton>
+                                    </center>
+                              </p:column>
+                        </p:dataTable>
+                  </h:panelGrid>
+            </h:form>
+      </ui:define>
+
+</ui:composition>

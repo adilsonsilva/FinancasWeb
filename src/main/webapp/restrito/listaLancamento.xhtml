@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/template/layoutDefault.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+      <ui:define name="titulo">Listagem Lançamentos</ui:define>
+
+      <ui:define name="conteudo">
+            <h1>Meus Lançamentos</h1>
+            <h:form style="padding-left: 24px;">
+                  <h:panelGrid id="panel">
+                        <p:dataTable style="font-size: 12px;" widgetVar="tbLancamentos" 
+                                     var="lancamento" value="#{lancamentoMB.lancamentos}">
+                              <p:column headerText="Código">
+                                    #{lancamento.idLancamento}
+                              </p:column>
+                              
+                              <p:column headerText="Tipo Lançamento">
+                                    #{lancamento.idLancamento}
+                              </p:column>
+                              
+                              <p:column headerText="Categoria">
+                                    #{lancamento.idLancamento}
+                              </p:column>
+                              
+                              <p:column headerText="Valor">
+                                    <h:outputLabel value="#{lancamento.idLancamento}">
+                                          <f:convertNumber locale="pt_BR" currencySymbol="R$" minFractionDigits="2" maxFractionDigits="2" />
+                                    </h:outputLabel>
+                              </p:column>
+                              
+                              <p:column headerText="Status">
+                                    #{lancamento.idLancamento}
+                              </p:column>
+                              
+                              <p:column headerText="Data Lançamento">
+                                    #{lancamento.idLancamento}
+                              </p:column>
+                              
+                              <p:column headerText="Data ">
+                                    <h:outputLabel value="#{lancamento.idLancamento}">
+                                          <f:convertDateTime locale="pt_BR" timeStyle="medium" />
+                                    </h:outputLabel>
+                              </p:column>
+
+                              <p:column headerText="Ação">
+                                    <p:commandButton icon="ui-icon-circle-close" title="Excluir">
+                                          <f:setPropertyActionListener target="#{lancamentoMB.lancamento}" value="#{lancamento}" />
+                                    </p:commandButton>
+                                    <p:commandButton icon="ui-icon-pencil" title="Editar" />
+                              </p:column>
+                        </p:dataTable>
+                  </h:panelGrid>
+            </h:form>
+
+      </ui:define>
+</ui:composition>

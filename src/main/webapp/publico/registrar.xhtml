@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/template/layoutDefault.xhtml"
+                xmlns:p="http://primefaces.org/ui">
+
+      <ui:define name="conteudo">
+            <h1>Registra-se</h1>
+            <h:form style="padding-left: 24px;">                  
+                  <h:panelGrid columns="1" class="form-grid" cellspacing="5">    
+                        <p:messages showDetail="true" showSummary="true" />
+                        <h:panelGrid columns="3">
+                              <h:outputLabel value="Nome: " for="nome" />
+                              <p:inputText id="nome" label="Nome" size="40" value="#{usuarioMB.usuario.nome}"/>
+                              <p:message for="nome" />
+
+                              <h:outputLabel value="e-Mail: " for="email"/>
+                              <p:inputText id="email" label="e-Mail" size="40" value="#{usuarioMB.usuario.email}"/>
+                              <p:message for="email" />
+
+                              <h:outputLabel value="Senha: " for="senha"/>
+                              <p:password id="senha" label="Senha" value="#{usuarioMB.usuario.senha}" />
+                              <p:message for="senha" />
+
+                              <h:outputLabel value="Confirmar Senha:" for="confirmaSenha" />
+                              <p:password id="confirmaSenha" value="#{usuarioMB.confirmaSenha}" required="true"/>
+                              <p:message for="confirmaSenha" />
+
+                              <h:outputLabel />
+                              <p:commandButton value="Registrar" action="#{usuarioMB.registrar}" ajax="false"  icon="ui-icon-circle-plus"/>
+                        </h:panelGrid>
+                  </h:panelGrid>
+            </h:form>
+      </ui:define>
+</ui:composition>
