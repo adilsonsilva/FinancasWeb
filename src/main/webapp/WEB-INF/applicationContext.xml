@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<b:beans xmlns="http://www.springframework.org/schema/security"
+         xmlns:b="http://www.springframework.org/schema/beans"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                             http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                             http://www.springframework.org/schema/security 
+                             http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+    
+      <http auto-config="true" access-denied-page="/template/acessoRestrito.jsf" >
+            <intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
+            <intercept-url pattern="/restrito/**" access="ROLE_USUARIO" />
+            <form-login login-page="/login.jsf" 
+                        always-use-default-target="true" default-target-url="/restrito/listaLancamento.jsf"
+                        authentication-failure-url="/login.jsf?error=true"  />
+        
+            <logout delete-cookies="JSESSIONID" logout-success-url="/login.jsf" invalidate-session="true" />
+   <!--         <session-management>
+                  <concurrency-control max-sessions="1" error-if-maximum-exceeded="true" expired-url="/login.jsf" session-registry-alias="" />
+            </session-management> 
+            <remember-me />-->
+
+      </http>
+
+      <authentication-manager>
+            <authentication-provider>
+                  <jdbc-user-service data-source-ref="pjDataSource"
+                                     authorities-by-username-query="SELECT u.email, u.permissao FROM  usuario u WHERE u.permissao = u.permissao AND u.email = ?"
+                                     users-by-username-query="SELECT email, senha, ativo FROM usuario WHERE email = ?" />
+            </authentication-provider>
+      </authentication-manager>
+    
+      <b:bean id="pjDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
+            <b:property name="driverClassName" value="org.postgresql.Driver"/>
+             <b:property name="url" value="jdbc:postgresql://localhost:5432/financasweb" />
+            <b:property name="username" value="postgres" />
+            <b:property name="password" value="1234" />             
+      </b:bean>
+    
+      <b:bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource"> 
+            <b:property name="basenames"> 
+                  <b:list> 
+                        <b:value>/br/com/financasWeb/controle/mensagem/messages</b:value> 
+                  </b:list> 
+            </b:property> 
+      </b:bean> 
+</b:beans>
